@@ -56,6 +56,15 @@ public class NoteServlet extends HttpServlet {
 			case "/update":
 				updateNote(request, response);
 				break;
+			case "/asc":
+				listNoteASC(request, response);
+				break;
+			case "/desc":
+				listNoteDESC(request, response);
+				break;
+			case "/search":
+				searchNote(request, response);
+				break;
 			default:
 				listNote(request, response);
 				break;
@@ -119,4 +128,28 @@ public class NoteServlet extends HttpServlet {
 
 	}
 
+	private void listNoteASC(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		List<Note> listNote = noteDATA.selectAllNotesASC();
+		request.setAttribute("listNote", listNote);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("note-list.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void listNoteDESC(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		List<Note> listNote = noteDATA.selectAllNotesDESC();
+		request.setAttribute("listNote", listNote);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("note-list.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void searchNote(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		String name = request.getParameter("name");
+		List<Note> listNote = noteDATA.searchNotes(name);
+		request.setAttribute("listNote", listNote);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("note-list.jsp");
+		dispatcher.forward(request, response);
+	}
 }

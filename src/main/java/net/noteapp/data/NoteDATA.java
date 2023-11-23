@@ -28,6 +28,9 @@ public class NoteDATA {
 
 	private static final String SELECT_NOTE_BY_ID = "select id,name,title,text from notes where id =?";
 	private static final String SELECT_ALL_NOTES = "select * from notes";
+	private static final String SELECT_ALL_NOTES_SORTED_ASC = "select * from notes order by id asc";
+	private static final String SELECT_ALL_NOTES_SORTED_DESC = "select * from notes order by id desc";
+	private static final String SELECT_NOTES_BY_QUERY = "select * from notes where name like ? or title like ? or text like ?";
 	private static final String DELETE_NOTES_SQL = "delete from notes where id = ?;";
 	private static final String UPDATE_NOTES_SQL = "update notes set name = ?,title= ?, text =? where id = ?;";
 
@@ -68,7 +71,7 @@ public class NoteDATA {
 
 		try (Connection connection = getConnection();
 
-				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_NOTE_BY_ID);) {
+			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_NOTE_BY_ID);) {
 			preparedStatement.setInt(1, id);
 			System.out.println(preparedStatement);
 
@@ -112,6 +115,70 @@ public class NoteDATA {
 		}
 		return notes;
 	}
+
+	public list<Note> selectAllNotesASC() {
+		List<Note> notes = new ArrayList<>();
+
+		try (Connection connection = getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_NOTES_SORTED_ASC);) {
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String title = rs.getString("title");
+				String text = rs.getString("text");
+				notes.add(new Note(id, name, title, text));
+			}
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		return notes;
+	}
+
+	public list<Note> selectAllNotesDESC() {
+		List<Note> notes = new ArrayList<>();
+
+		try (Connection connection = getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_NOTES_SORTED_DESC);) {
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String title = rs.getString("title");
+				String text = rs.getString("text");
+				notes.add(new Note(id, name, title, text));
+			}
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		return notes;
+	}
+
+	public List<Note> searchNotes(String query) {
+    List<Note> notes = new ArrayList<>();
+
+    try (Connection connection = getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_NOTES_BY_QUERY);) {
+
+        preparedStatement.setString(1, "%" + query + "%");
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String name = rs.getString("name");
+            String title = rs.getString("title");
+            String text = rs.getString("text");
+            notes.add(new Note(id, name, title, text));
+        }
+    } catch (SQLException e) {
+        printSQLException(e);
+    }
+    return notes;
+}
 
 	public boolean deleteNote(int id) throws SQLException {
 		boolean rowDeleted;
