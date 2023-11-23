@@ -4,34 +4,46 @@
 | --- | --- |
 | 5025211015 | Muhammad Daffa Ashdaqfillah |
 
+## Table of Contents
+  - [Page Layout (View)](#page-layout-view)
+  - [Features-Implementation-Analysis](#features-implementation-analysis)
+    - [1. Create New Note](#1-create-new-note)
+    - [2. Edit Note](#2-edit-note)
+    - [3. Delete Note](#3-delete-note)
+    - [4. Show List All Note](#4-show-list-all-note)
+    - [5. Sort by Name Asc](#5-sort-by-name-asc)
+    - [6. Sort by Name Desc](#6-sort-by-name-desc)
+    - [7. List by User](#7-list-by-user)
+    - [8. Search Note](#8-search-note)
+  - [Conclusion](#conclusion)
 
 ## Page Layout (View)
 
-### 1. Create New Note
+### 1. Create New Notes
 
 ![Untitled](img/Untitled.png)
 
-### 2. Edit Note
+### 2. Edit Notes
 
 ![Untitled](img/Untitled%201.png)
 
-### 3. Delete Note
+### 3. Delete Notes
 
 ![Untitled](img/Untitled%202.png)
 
-### 4. Show List All Note
+### 4. Show List All Notes
 
 ![Untitled](img/Untitled%202.png)
 
-### 5. Sort by Name Asc
+### 5. Sort Notes by Name Asc
 
 ![Untitled](img/Untitled%203.png)
 
-### 6. Sort by Name Desc
+### 6. Sort Notes by Name Desc
 
 ![Untitled](img/Untitled%204.png)
 
-### 7. List by User
+### 7. List Notes by User
 
 ![Untitled](img/Untitled%205.png)
 
@@ -135,7 +147,7 @@ public class NoteDATA {
 }
 ```
 
-## Features-Implementation-**Analysis**
+## Features-Implementation-Analysis
 
 ### 1. Create New Note
 
