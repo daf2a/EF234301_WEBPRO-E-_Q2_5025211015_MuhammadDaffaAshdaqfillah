@@ -16,6 +16,7 @@
     - [7. List by User](#7-list-by-user)
     - [8. Search Note](#8-search-note)
   - [Conclusion](#conclusion)
+  - [Hosting Problem](#hosting-problem)
 
 ## Page Layout (View)
 
@@ -766,3 +767,6 @@ This Quiz 2 Project is done by using JSP (Java/Jakarta Server Pages) made by IDE
 In its implementation, JSP uses the MVC (Model-View-Controller) architecture. In this project, the model is stored in model.note.java, the controller uses Servlet, and the database uses MySQL which is managed in NoteDATA.java. Every function called from the view will be directed to the servlet and return the data retrieved from the database through NoteDATA.
 
 In this project, I have implemented 8 CRUD features, which are Create Note, Edit Note, List Notes, List Note by User, Delete Note, Search Notes, Sort Notes by Asc, and Sort Notes by Desc.
+
+## Hosting Problem
+I can't find a free web host that actually has JSP support built in. Because to host with JSP, i need a servlet container. In this project, i use Apache Tomcat to be my servlet containers. I can't host my project in Github Pages, Netlify, Vercel, or Heroku because they don't support JSP Module.
